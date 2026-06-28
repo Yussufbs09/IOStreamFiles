@@ -1,3 +1,3 @@
-Andi;081111
-Budi;082222
-Citra;08333
+Andi;081111;andi@gmail.com
+Budi;082222;budi@gmail.com
+Citra;08333;citra@gmail.com

@@ -1,28 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bagian3.kontak;
 
-/**
- *
- * @author USER
- */
 public class MainKontak {
     public static void main(String[] args) {
-        BukuKontak buku = new BukuKontak("Kontak.txt");
-        buku.tambahKontak(new Kontak("Andi", "081111"));
-        buku.tambahKontak(new Kontak("Budi", "082222"));
-        buku.tambahKontak(new Kontak("Citra", "08333"));
-        
-        buku.tampilkanSemua();
+        // 1. Inisialisasi buku kontak
+        BukuKontak buku = new BukuKontak("data_kontak.txt");
+
+        // 2. Tambah data contoh (menggunakan format 3 parameter: nama, nomor, email)
+        buku.tambahKontak(new Kontak("Budi", "081234567890", "budi@email.com"));
+        buku.tambahKontak(new Kontak("Siti", "085678901234", "siti@email.com"));
+        buku.tambahKontak(new Kontak("Andi", "089876543210", "andi@email.com"));
+
+        // 3. Simpan data awal ke berkas
+        System.out.println("--- Menyimpan Data Awal ---");
         buku.simpanKeBerkas();
-        
+        buku.tampilkanSemua();
         System.out.println();
+
+        // 4. Uji hapus kontak yang ADA (Siti)
+        System.out.println("--- Menguji Hapus Kontak 'Siti' ---");
+        buku.hapusKontak("Siti");
         
-        BukuKontak bukuLain = new BukuKontak("Kontak.txt");
-        bukuLain.muatDariBerkas();
-        bukuLain.tampilkanSemua();
-        System.out.println("Jumlah kontak : " + bukuLain.jumlahKontak());
+        // Tampilkan semua untuk memastikan Siti sudah hilang dari memori
+        buku.tampilkanSemua();
+        System.out.println();
+
+        // 5. Uji hapus kontak yang TIDAK ADA (Joko)
+        System.out.println("--- Menguji Hapus Kontak 'Joko' ---");
+        buku.hapusKontak("Joko");
+        System.out.println();
+
+        // 6. Pembuktian: Muat ulang data dari berkas untuk memastikan berkas fisik benar-benar terupdate
+        System.out.println("--- Memuat Ulang dari Berkas untuk Pembuktian ---");
+        BukuKontak bukuBaru = new BukuKontak("data_kontak.txt");
+        bukuBaru.muatDariBerkas();
+        bukuBaru.tampilkanSemua(); 
+        // Hasil akhir hanya akan menampilkan Budi dan Andi karena Siti sudah permanen terhapus dari berkas teks
     }
 }
